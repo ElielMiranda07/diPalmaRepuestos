@@ -1,0 +1,202 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.atkinson-hyperlegible-regular {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.atkinson-hyperlegible-bold {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.atkinson-hyperlegible-regular-italic {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.atkinson-hyperlegible-bold-italic {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.divContacto a {
+  text-decoration: none;
+  color: #eb0a1e;
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.icon-hover iconify-icon {
+  transition: transform 0.3s ease; /* Transición suave para el cambio de tamaño */
+}
+
+.icon-hover:hover iconify-icon {
+  transform: scale(1.2); /* Ajusta el factor de escala según prefieras */
+}
+
+.producto {
+  transition: transform 0.3s ease; /* Transición suave para el cambio de tamaño */
+}
+
+.producto:hover {
+  transform: scale(1.05); /* Ajusta el factor de escala según prefieras */
+}
+
+.divContacto {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #ffffff;
+}
+
+#divContacto {
+  transition: opacity 0.5s ease, visibility 0.5s ease; /* Transición suave */
+}
+
+.hidden {
+  opacity: 0; /* Elemento invisible */
+  visibility: hidden; /* Para que deje de ocupar espacio visual */
+}
+
+.border-container {
+  position: relative;
+  width: 100%; /* El contenedor ocupa el 100% del ancho */
+  text-align: center; /* Centra el contenido dentro del contenedor */
+  z-index: 9;
+}
+
+.border-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 5%; /* Centra el borde reduciendo el ancho en los lados */
+  width: 90%; /* El borde ocupa el 80% del ancho */
+  border-bottom: 2.5px solid #eb0a1e; /* Ajusta el grosor y color del borde */
+  background-color: #ffffff;
+}
+
+.logoDiPalma {
+  width: 18vw;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.logoDiPalma:hover {
+  transform: scale(1.15);
+}
+
+.nav-link {
+  color: #eb0a1e;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: #ce0b1b;
+}
+
+main {
+  min-height: 80vh;
+  background-image: url("../media/image\ \(17\).png");
+  background-size: 33.333% auto;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.95
+  ); /* Color con transparencia (ajusta el color y la opacidad) */
+  background-blend-mode: overlay;
+}
+
+.section1 {
+  display: block;
+  height: auto;
+  overflow: hidden;
+}
+
+.textoMain {
+  color: #eb0a1e;
+  /*font-weight: bolder;*/
+  font-size: 6vw;
+  max-width: 28vw;
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.imagenTurbo {
+  width: 28vw;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+  transition: transform 0.3s ease;
+}
+
+.imagenTurbo:hover {
+  transform: scale(1.05);
+}
+
+.section2 {
+  background-color: #ffffff;
+  display: block;
+  height: auto;
+  overflow: hidden;
+}
+
+.logosMarcas {
+  width: 19vw;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.logosMarcas:hover {
+  transform: scale(1.15);
+}
+
+.section3 {
+  display: block;
+  height: auto;
+  overflow: hidden;
+}
+
+.tituloRepuestos {
+  text-decoration: none;
+  font-weight: bold;
+  color: #eb0a1e;
+}
+
+.card {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.card-body {
+  background-image: url("../media/image\ \(17\).png");
+  background-size: 100% auto;
+  background-color: rgba(255, 255, 255, 0.95);
+  background-blend-mode: overlay;
+}
+
+.modalProductos {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.divFooter a {
+  text-decoration: none;
+  color: #eb0a1e;
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
