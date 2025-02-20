@@ -50,7 +50,7 @@ async function cargarProductos() {
 
       // Plantilla HTML para cada producto
       const productoHTML = `
-              <div class="card" style="width: 18rem">
+              <div class="card producto">
                   <img
                       src="${producto.imagen}"
                       class="card-img-top"
@@ -67,7 +67,7 @@ async function cargarProductos() {
                   <div class="d-flex justify-content-center">
                   <button
                     type="button"
-                    class="btn btn-danger"
+                    class="btn btn-sm btn-danger"
                     data-bs-toggle="modal"
                     data-bs-target="#${modalId}"
                   >
@@ -109,10 +109,10 @@ async function cargarProductos() {
                     <p>${producto.descripcion}</p>
                     <p><strong>Precio:</strong>$${producto.precio}</p>
                   </div>
-                  <div class="modal-footer">
+                  <div class="modal-footer d-flex justify-content-center">
                     <button
                       type="button"
-                      class="btn btn-secondary"
+                      class="btn btn-sm btn-danger"
                       data-bs-dismiss="modal"
                     >
                       Cerrar

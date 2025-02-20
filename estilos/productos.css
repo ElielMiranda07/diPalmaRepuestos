@@ -1,0 +1,9 @@
+.producto {
+  width: 28vw;
+}
+
+@media (min-width: 992px) {
+  .producto {
+    width: 23vw;
+  }
+}

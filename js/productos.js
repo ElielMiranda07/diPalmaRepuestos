@@ -54,7 +54,7 @@ async function cargarProductos() {
         "d-flex",
         "justify-content-center",
         "col-md-4",
-        "col-sm-6",
+        "col-6",
         "mb-4",
         "p-0",
         "producto"
@@ -62,14 +62,14 @@ async function cargarProductos() {
       divProducto.setAttribute("data-nombre", producto.titulo.toLowerCase());
 
       divProducto.innerHTML = `
-        <div class="card" style="width: 18rem;">
+        <div class="card">
           <img src="${producto.imagen1}" class="card-img-top" alt="Imagen del producto" />
           <div class="card-body">
             <h5 class="card-title text-center">${producto.titulo}</h5>
             <p class="card-text text-center">${producto.descripcion}</p>
             <p class="card-text text-center"><strong>Precio:</strong> $${producto.precio}</p>
             <div class="d-flex justify-content-center">
-              <button type="button" class="btn btn-danger botonVerMas" data-id="${producto.id}" data-bs-toggle="modal" data-bs-target="#${modalId}">
+              <button type="button" class="btn btn-sm btn-danger botonVerMas" data-id="${producto.id}" data-bs-toggle="modal" data-bs-target="#${modalId}">
                 Ver más
               </button>
             </div>
@@ -97,8 +97,8 @@ async function cargarProductos() {
               <p>${producto.descripcion}</p>
               <p><strong>Precio:</strong> $${producto.precio}</p>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Cerrar</button>
             </div>
           </div>
         </div>

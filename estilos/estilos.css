@@ -34,10 +34,12 @@
   font-family: "Atkinson Hyperlegible", sans-serif;
   font-weight: 700;
   font-style: normal;
+  font-size: 1.3vh;
 }
 
 .icon-hover iconify-icon {
   transition: transform 0.3s ease; /* Transición suave para el cambio de tamaño */
+  font-size: 25px;
 }
 
 .icon-hover:hover iconify-icon {
@@ -126,15 +128,15 @@ main {
 .textoMain {
   color: #eb0a1e;
   /*font-weight: bolder;*/
-  font-size: 6vw;
-  max-width: 28vw;
+  font-size: 7vw;
+  max-width: 60vw;
   font-family: "Atkinson Hyperlegible", sans-serif;
   font-weight: 700;
   font-style: normal;
 }
 
 .imagenTurbo {
-  width: 28vw;
+  width: 50vw;
   height: auto;
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
   transition: transform 0.3s ease;
@@ -174,6 +176,10 @@ main {
   color: #eb0a1e;
 }
 
+.producto {
+  width: 28vw;
+}
+
 .card {
   font-family: "Atkinson Hyperlegible", sans-serif;
   font-weight: 700;
@@ -193,10 +199,51 @@ main {
   font-style: normal;
 }
 
+.logoDiPalmaFooter {
+  width: 30vw;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.logoDiPalmaFooter:hover {
+  transform: scale(1.15);
+}
+
 .divFooter a {
   text-decoration: none;
   color: #eb0a1e;
   font-family: "Atkinson Hyperlegible", sans-serif;
   font-weight: 700;
   font-style: normal;
+  font-size: 1.3vh;
+}
+
+@media (min-width: 992px) {
+  .icon-hover iconify-icon {
+    font-size: 40px;
+  }
+
+  .divContacto a {
+    font-size: 2.2vh;
+  }
+
+  .textoMain {
+    font-size: 5vw;
+    max-width: 60vw;
+  }
+
+  .imagenTurbo {
+    width: 35vw;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+    transition: transform 0.3s ease;
+  }
+
+  .producto {
+    width: 20vw;
+  }
+
+  .divFooter a {
+    font-size: 2.2vh;
+  }
 }

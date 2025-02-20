@@ -34,10 +34,12 @@
   font-family: "Atkinson Hyperlegible", sans-serif;
   font-weight: 700;
   font-style: normal;
+  font-size: 1.3vh;
 }
 
 .icon-hover iconify-icon {
   transition: transform 0.3s ease; /* Transición suave para el cambio de tamaño */
+  font-size: 25px;
 }
 
 .icon-hover:hover iconify-icon {
@@ -106,7 +108,7 @@
 
 main {
   min-height: 80vh;
-  background-image: url("../media/image\ \(17\).png");
+  background-image: url("../media/ovaloJL.png");
   background-size: 33.333% auto;
   background-color: rgba(
     255,
@@ -194,9 +196,34 @@ main {
   font-family: "Atkinson Hyperlegible", sans-serif;
   font-weight: 700;
   font-style: normal;
+  font-size: 1.3vh;
 }
 
 form label {
   color: #eb0a1e;
   font-weight: 600;
+}
+
+.logoDiPalmaFooter {
+  width: 30vw;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.logoDiPalmaFooter:hover {
+  transform: scale(1.15);
+}
+
+@media (min-width: 992px) {
+  .icon-hover iconify-icon {
+    font-size: 40px;
+  }
+
+  .divContacto a {
+    font-size: 2.2vh;
+  }
+
+  .divFooter a {
+    font-size: 2.2vh;
+  }
 }
