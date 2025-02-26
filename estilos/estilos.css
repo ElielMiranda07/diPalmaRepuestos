@@ -83,18 +83,30 @@
   bottom: 0;
   left: 5%; /* Centra el borde reduciendo el ancho en los lados */
   width: 90%; /* El borde ocupa el 80% del ancho */
-  border-bottom: 2.5px solid #eb0a1e; /* Ajusta el grosor y color del borde */
+  border-bottom: 2.5px solid black; /* Ajusta el grosor y color del borde */
   background-color: #ffffff;
+}
+
+.logoNavbar {
+  transition: transform 0.3s ease;
+}
+
+.logoNavbar:hover {
+  transform: scale(1.05);
 }
 
 .logoDiPalma {
   width: 18vw;
   height: auto;
-  transition: transform 0.3s ease;
 }
 
-.logoDiPalma:hover {
-  transform: scale(1.15);
+.logoLaurelesNav {
+  width: 5vw;
+  height: auto;
+}
+
+.textoNavbar {
+  font-size: 2vw;
 }
 
 .nav-link {
@@ -114,7 +126,7 @@ main {
     255,
     255,
     255,
-    0.95
+    0.87
   ); /* Color con transparencia (ajusta el color y la opacidad) */
   background-blend-mode: overlay;
 }
@@ -127,7 +139,6 @@ main {
 
 .textoMain {
   color: #eb0a1e;
-  /*font-weight: bolder;*/
   font-size: 7vw;
   max-width: 60vw;
   font-family: "Atkinson Hyperlegible", sans-serif;
@@ -135,14 +146,22 @@ main {
   font-style: normal;
 }
 
-.imagenTurbo {
-  width: 50vw;
+.textoMainBis {
+  color: #eb0a1e;
+  font-size: 3vw;
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.imagenRepuestos {
+  width: 20vw;
   height: auto;
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
   transition: transform 0.3s ease;
 }
 
-.imagenTurbo:hover {
+.imagenRepuestos:hover {
   transform: scale(1.05);
 }
 
@@ -177,7 +196,7 @@ main {
 }
 
 .producto {
-  width: 28vw;
+  width: 35vw;
 }
 
 .card {
@@ -199,14 +218,23 @@ main {
   font-style: normal;
 }
 
+.logoLaurelesFooter {
+  transition: transform 0.3s ease;
+}
+
+.logoLaurelesFooter:hover {
+  transform: scale(1.1);
+}
+
 .logoDiPalmaFooter {
   width: 30vw;
   height: auto;
   transition: transform 0.3s ease;
 }
 
-.logoDiPalmaFooter:hover {
-  transform: scale(1.15);
+.laureles {
+  width: 7vw;
+  height: auto;
 }
 
 .divFooter a {
@@ -225,6 +253,10 @@ main {
 
   .divContacto a {
     font-size: 2.2vh;
+  }
+
+  .textoNavbar {
+    font-size: 1.5vw;
   }
 
   .textoMain {

@@ -83,18 +83,30 @@
   bottom: 0;
   left: 5%; /* Centra el borde reduciendo el ancho en los lados */
   width: 90%; /* El borde ocupa el 80% del ancho */
-  border-bottom: 2.5px solid #eb0a1e; /* Ajusta el grosor y color del borde */
+  border-bottom: 2.5px solid black; /* Ajusta el grosor y color del borde */
   background-color: #ffffff;
+}
+
+.logoNavbar {
+  transition: transform 0.3s ease;
+}
+
+.logoNavbar:hover {
+  transform: scale(1.05);
 }
 
 .logoDiPalma {
   width: 18vw;
   height: auto;
-  transition: transform 0.3s ease;
 }
 
-.logoDiPalma:hover {
-  transform: scale(1.15);
+.logoLaurelesNav {
+  width: 5vw;
+  height: auto;
+}
+
+.textoNavbar {
+  font-size: 2vw;
 }
 
 .nav-link {
@@ -119,77 +131,6 @@ main {
   background-blend-mode: overlay;
 }
 
-.section1 {
-  display: block;
-  height: auto;
-  overflow: hidden;
-}
-
-.textoMain {
-  color: #eb0a1e;
-  /*font-weight: bolder;*/
-  font-size: 6vw;
-  max-width: 30vw;
-  font-family: "Atkinson Hyperlegible", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.imagenTurbo {
-  width: 30vw;
-  height: auto;
-  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
-}
-
-.section2 {
-  background-color: #ffffff;
-  display: block;
-  height: auto;
-  overflow: hidden;
-}
-
-.logosMarcas {
-  width: 19vw;
-  height: auto;
-  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
-  transition: transform 0.3s ease;
-}
-
-.logosMarcas:hover {
-  transform: scale(1.15);
-}
-
-.section3 {
-  display: block;
-  height: auto;
-  overflow: hidden;
-}
-
-.tituloContacto {
-  text-decoration: none;
-  font-weight: bold;
-  color: #eb0a1e;
-}
-
-.card {
-  font-family: "Atkinson Hyperlegible", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.card-body {
-  background-image: url("../media/image\ \(17\).png");
-  background-size: 100% auto;
-  background-color: rgba(255, 255, 255, 0.95);
-  background-blend-mode: overlay;
-}
-
-.modalProductos {
-  font-family: "Atkinson Hyperlegible", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
 .divFooter a {
   text-decoration: none;
   color: #eb0a1e;
@@ -210,8 +151,27 @@ form label {
   transition: transform 0.3s ease;
 }
 
-.logoDiPalmaFooter:hover {
-  transform: scale(1.15);
+.logoLaurelesFooter {
+  transition: transform 0.3s ease;
+}
+
+.logoLaurelesFooter:hover {
+  transform: scale(1.1);
+}
+
+.logoDiPalmaFooter {
+  width: 30vw;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.laureles {
+  width: 7vw;
+  height: auto;
+}
+
+.telefonoContacto {
+  color: #eb0a1e;
 }
 
 @media (min-width: 992px) {
@@ -221,6 +181,10 @@ form label {
 
   .divContacto a {
     font-size: 2.2vh;
+  }
+
+  .textoNavbar {
+    font-size: 1.5vw;
   }
 
   .divFooter a {

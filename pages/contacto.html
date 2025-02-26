@@ -100,18 +100,32 @@
       <div class="border-container my-1"></div>
     </section>
     <header>
-      <div class="border-container my-1"></div>
       <div class="container-fluid d-flex p-0">
         <nav class="navbar navbar-expand-lg container-fluid p-0">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html"
-              ><img
+          <div class="container-fluid d-flex flex-row justify-content-between">
+            <a class="navbar-brand col-3 logoNavbar" href="../index.html">
+              <img
                 src="../media/lona Di Palma Repuestos 3x09 c_p (1).png"
                 alt="Logo Di Palma Repuestos"
                 class="logoDiPalma"
-            /></a>
+              />
+              <img src="../media/laureles.png" alt="" class="logoLaurelesNav" />
+            </a>
+            <div
+              class="col-5 d-flex row justify-content-center align-items-center"
+            >
+              <p class="p-0 m-0 text-center textoNavbar">
+                <strong>Olavarría 372 - (6620) Chivilcoy (B)</strong>
+              </p>
+              <p class="p-0 m-0 text-center textoNavbar">
+                <strong>2346-307267</strong>
+              </p>
+              <p class="p-0 m-0 text-center textoNavbar">
+                <strong>jldipalmarepuestos@yahoo.com.ar</strong>
+              </p>
+            </div>
             <button
-              class="navbar-toggler"
+              class="navbar-toggler col-2"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
@@ -135,7 +149,7 @@
                   <a class="nav-link fs-2" href="./productos.html">Repuestos</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active fs-2" href="./contacto.html"
+                  <a class="nav-link fs-2 active" href="./contacto.html"
                     >Contacto</a
                   >
                 </li>
@@ -148,84 +162,63 @@
     </header>
     <main class="mainFormulario" id="mainFormulario">
       <section class="container-fluid d-flex flex-column align-items-center">
-        <h1 class="mt-3 mb-3 tituloContacto">Deja tu consulta</h1>
-        <form
-          id="contactForm"
-          class="col-11 col-sm-8 col-md-6 col-lg-4 col-xl-3 my-3"
+        <article
+          class="container-fluid d-flex flex-column flex-md-row justify-content-center align-items-center mt-3"
         >
-          <label for="nombre" class="form-label mt-1">Nombre</label>
-          <input
-            type="text"
-            id="nombre"
-            name="name"
-            class="form-control"
-            required
-          />
-
-          <label for="apellido" class="form-label mt-1">Apellido</label>
-          <input
-            type="text"
-            id="apellido"
-            name="apellido"
-            class="form-control"
-            required
-          />
-
-          <label for="telefono" class="form-label mt-1">Teléfono</label>
-          <input
-            type="number"
-            id="telefono"
-            name="telefono"
-            class="form-control"
-            required
-          />
-
-          <label for="email" class="form-label mt-1">Correo electrónico</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            required
-          />
-
-          <!-- Nuevo textarea -->
-          <label for="consulta" class="form-label mt-1"
-            >Escribí tu consulta</label
+          <div
+            class="col-6 col-md-4 d-flex flex-row flex-md-column justify-content-center align-items-center my-3"
           >
-          <textarea
-            id="consulta"
-            name="consulta"
-            class="form-control"
-            rows="4"
-            required
-          ></textarea>
-          <!-- Fin del nuevo textarea -->
-
-          <div class="d-flex justify-content-center my-2">
-            <button
-              type="submit"
-              class="btn btn-sm btn-danger btn-lg mt-2 botonAsociate"
-            >
-              Enviar
-            </button>
+            <div>
+              <span class="icon-hover mx-2">
+                <iconify-icon
+                  icon="openmoji:location-indicator-red"
+                ></iconify-icon>
+              </span>
+            </div>
+            <div class="text-center">
+              <strong>Olavarría 372 - (6620) Chivilcoy (B)</strong>
+            </div>
           </div>
-        </form>
-
-        <div id="status"></div>
+          <div
+            class="col-6 col-md-4 d-flex flex-row flex-md-column justify-content-center align-items-center my-3"
+          >
+            <div class="telefonoContacto">
+              <span class="icon-hover mx-2">
+                <iconify-icon icon="ic:round-phone"></iconify-icon>
+              </span>
+            </div>
+            <div><strong>2346-307267</strong></div>
+          </div>
+          <div
+            class="col-6 col-md-4 d-flex flex-row flex-md-column justify-content-center align-items-center my-3"
+          >
+            <div>
+              <span class="icon-hover mx-2">
+                <iconify-icon icon="fluent-emoji:e-mail"></iconify-icon>
+              </span>
+            </div>
+            <div><strong>jldipalmarepuestos@yahoo.com.ar</strong></div>
+          </div>
+        </article>
+        <article></article>
       </section>
     </main>
-    <footer class="p-0">
-      <div class="container-fluid d-flex justify-content-center my-2 p-0">
-        <img
-          src="../media/lona Di Palma Repuestos 3x09 c_p (1).png"
-          alt=""
-          class="logoDiPalmaFooter"
-        />
+    <footer class="container-fluid d-flex flex-column align-items-center p-0">
+      <div class="logoLaurelesFooter col-6">
+        <div class="container-fluid d-flex justify-content-center my-2">
+          <img
+            src="../media/lona Di Palma Repuestos 3x09 c_p (1).png"
+            alt=""
+            class="logoDiPalmaFooter"
+          />
+        </div>
+        <div class="container-fluid d-flex justify-content-center mb-2">
+          <img src="../media/laureles.png" alt="" class="laureles" />
+        </div>
       </div>
       <div class="border-container my-1"></div>
       <div
-        class="container-fluid d-flex justify-content-around my-3 divFooter p-0"
+        class="container-fluid d-flex justify-content-around my-3 p-0 divFooter"
       >
         <div class="col">
           <a

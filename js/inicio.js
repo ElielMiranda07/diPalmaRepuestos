@@ -29,17 +29,22 @@ const db = firebase.firestore();
 
 // Aquí puedes hacer consultas a Firestore
 
-// Función para cargar y mostrar los 3 productos más clickeados
+// Función para cargar y mostrar los productos más clickeados
 async function cargarProductos() {
   const productosRef = firebase.firestore().collection("productos");
 
+  // Determinar la cantidad de productos según el ancho de la pantalla
+  const limiteProductos = window.innerWidth < 768 ? 2 : 3;
+
   try {
-    // Ordenar por el campo "clicks" de forma descendente y limitar a 3 resultados
+    // Ordenar por el campo "clicks" de forma descendente y limitar según el tamaño de la pantalla
     const snapshot = await productosRef
       .orderBy("clicks", "desc")
-      .limit(3)
+      .limit(limiteProductos)
       .get();
+
     const contenedorProductos = document.getElementById("contenedorProductos");
+    contenedorProductos.innerHTML = ""; // Limpiar el contenedor antes de insertar nuevos productos
 
     let modalHTML = ""; // Para acumular los modales y evitar múltiples inserciones en el DOM
     let index = 0; // Contador manual para los índices
@@ -107,7 +112,7 @@ async function cargarProductos() {
                       alt="Imagen del producto"
                     />
                     <p>${producto.descripcion}</p>
-                    <p><strong>Precio:</strong>$${producto.precio}</p>
+                    <p><strong>Precio:</strong> $${producto.precio}</p>
                   </div>
                   <div class="modal-footer d-flex justify-content-center">
                     <button
@@ -131,6 +136,11 @@ async function cargarProductos() {
     console.error("Error al cargar los productos: ", error);
   }
 }
+
+// Escuchar cambios en el tamaño de la pantalla y recargar los productos
+window.addEventListener("resize", () => {
+  cargarProductos();
+});
 
 // Inicializar los eventos en miniaturas al cargar el DOM
 document.addEventListener("DOMContentLoaded", function () {
