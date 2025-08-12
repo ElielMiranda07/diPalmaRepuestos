@@ -259,6 +259,10 @@ main {
     font-size: 1.5vw;
   }
 
+  .botonHeader {
+    display: none;
+  }
+
   .textoMain {
     font-size: 5vw;
     max-width: 60vw;

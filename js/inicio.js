@@ -57,9 +57,9 @@ async function cargarProductos() {
       const productoHTML = `
               <div class="card producto">
                   <img
-                      src="${producto.imagen}"
+                      src="${producto.imagen1}"
                       class="card-img-top"
-                      alt="Imagen del producto"
+                      alt="${producto.titulo}"
                   />
                   <div class="card-body">
                       <h5 class="card-title text-center">${producto.titulo}</h5>
@@ -107,7 +107,7 @@ async function cargarProductos() {
                   <div class="modal-body">
                     <img
                       id="imagenPrincipal${index}"
-                      src="${producto.imagen}"
+                      src="${producto.imagen1}"
                       class="img-fluid mb-3"
                       alt="Imagen del producto"
                     />

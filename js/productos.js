@@ -29,117 +29,165 @@ const db = firebase.firestore();
 
 // Aquí puedes hacer consultas a Firestore
 
-// Función para cargar y mostrar todos los productos
+// Variables globales para paginación
+let productos = [];
+let productosFiltrados = [];
+let productosPorPagina = 4;
+let paginaActual = 1;
+
+// Función para cargar y mostrar productos con paginación, ordenados por 'clicks'
 async function cargarProductos() {
-  const productosRef = firebase.firestore().collection("productos");
+  const productosRef = firebase
+    .firestore()
+    .collection("productos")
+    .orderBy("clicks", "desc"); // Ordenar por clicks descendente
 
   try {
-    // Obtener todos los productos sin limitarlos
     const snapshot = await productosRef.get();
-    const contenedorProductos = document.getElementById("contenedorProductos");
-    const barraBusqueda = document.getElementById("barraBusqueda");
-
-    const fragmentoProductos = document.createDocumentFragment(); // Fragmento para productos
-    const fragmentoModales = document.createDocumentFragment(); // Fragmento para modales
-
-    let index = 0; // Contador manual para los índices
-
-    snapshot.forEach((doc) => {
-      const producto = { id: doc.id, ...doc.data() }; // Agregar el ID del documento al producto
-      const modalId = `imageModal${index}`; // Generar un ID único para cada modal
-
-      // Crear el contenedor del producto
-      const divProducto = document.createElement("div");
-      divProducto.classList.add(
-        "d-flex",
-        "justify-content-center",
-        "col-md-4",
-        "col-6",
-        "mb-4",
-        "p-0",
-        "producto"
-      );
-      divProducto.setAttribute("data-nombre", producto.titulo.toLowerCase());
-
-      divProducto.innerHTML = `
-        <div class="card">
-          <img src="${producto.imagen1}" class="card-img-top" alt="Imagen del producto" />
-          <div class="card-body">
-            <h5 class="card-title text-center">${producto.titulo}</h5>
-            <p class="card-text text-center">${producto.descripcion}</p>
-            <p class="card-text text-center"><strong>Precio:</strong> $${producto.precio}</p>
-            <div class="d-flex justify-content-center">
-              <button type="button" class="btn btn-sm btn-danger botonVerMas" data-id="${producto.id}" data-bs-toggle="modal" data-bs-target="#${modalId}">
-                Ver más
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-
-      // Crear el modal correspondiente al producto
-      const modal = document.createElement("div");
-      modal.classList.add("modal", "fade", "modalProductos");
-      modal.setAttribute("id", modalId);
-      modal.setAttribute("tabindex", "-1");
-      modal.setAttribute("aria-labelledby", `imageModalLabel${index}`);
-      modal.setAttribute("aria-hidden", "true");
-
-      modal.innerHTML = `
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="imageModalLabel${index}">${producto.titulo}</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-            </div>
-            <div class="modal-body">
-              <img id="imagenPrincipal${index}" src="${producto.imagen1}" class="img-fluid mb-3" alt="Imagen del producto" />
-              <p>${producto.descripcion}</p>
-              <p><strong>Precio:</strong> $${producto.precio}</p>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-              <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-          </div>
-        </div>
-      `;
-
-      // Agregar el producto y el modal a los fragmentos
-      fragmentoProductos.appendChild(divProducto);
-      fragmentoModales.appendChild(modal);
-
-      index++;
-    });
-
-    // Insertar los fragmentos en el DOM
-    contenedorProductos.appendChild(fragmentoProductos);
-    document.body.appendChild(fragmentoModales);
-
-    // Filtrar productos al escribir en la barra de búsqueda
-    barraBusqueda.addEventListener("input", function () {
-      const textoBusqueda = barraBusqueda.value.trim().toLowerCase(); // Texto ingresado en la barra
-
-      const productosFiltrados = document.querySelectorAll(".producto"); // Seleccionar todos los productos
-
-      productosFiltrados.forEach((producto) => {
-        const nombreProducto = producto.getAttribute("data-nombre"); // Atributo data-nombre
-
-        if (nombreProducto.includes(textoBusqueda)) {
-          producto.style.display = "block"; // Mostrar el producto
-        } else {
-          producto.setAttribute("style", "display: none !important;"); // Ocultar el producto
-        }
-      });
-    });
+    productos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    productosFiltrados = [...productos]; // Inicialmente, los filtrados son todos
+    actualizarPaginacion();
   } catch (error) {
     console.error("Error al cargar los productos: ", error);
   }
 }
 
-// Inicializar los eventos en miniaturas al cargar el DOM
-document.addEventListener("DOMContentLoaded", function () {
-  cargarProductos();
-});
+function mostrarProductos() {
+  const contenedorProductos = document.getElementById("contenedorProductos");
+  const contenedorModales = document.getElementById("contenedorModales"); // Contenedor donde se agregarán los modales
+  contenedorProductos.innerHTML = "";
+  contenedorModales.innerHTML = "";
+
+  const inicio = (paginaActual - 1) * productosPorPagina;
+  const productosPagina = productosFiltrados.slice(
+    inicio,
+    inicio + productosPorPagina
+  );
+
+  productosPagina.forEach((producto, index) => {
+    const modalId = `imageModal${inicio + index}`;
+
+    // Crear la tarjeta del producto
+    const divProducto = document.createElement("div");
+    divProducto.classList.add(
+      "d-flex",
+      "justify-content-center",
+      "col-md-4",
+      "col-6",
+      "mb-4",
+      "p-0",
+      "producto"
+    );
+    divProducto.setAttribute("data-nombre", producto.titulo.toLowerCase());
+    divProducto.innerHTML = `
+      <div class="card">
+        <img src="${producto.imagen1}" class="card-img-top" alt="${producto.titulo}" />
+        <div class="card-body">
+          <h5 class="card-title text-center">${producto.titulo}</h5>
+          <p class="card-text text-center">${producto.descripcion}</p>
+          <p class="card-text text-center"><strong>Precio:</strong> $${producto.precio}</p>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-sm btn-danger botonVerMas" data-id="${producto.id}" data-bs-toggle="modal" data-bs-target="#${modalId}">Ver más</button>
+          </div>
+        </div>
+      </div>`;
+
+    contenedorProductos.appendChild(divProducto);
+
+    // Crear el modal correspondiente al producto
+    const divModal = document.createElement("div");
+    divModal.classList.add("modal", "fade");
+    divModal.id = modalId;
+    divModal.setAttribute("tabindex", "-1");
+    divModal.setAttribute("aria-labelledby", `${modalId}Label`);
+    divModal.setAttribute("aria-hidden", "true");
+    divModal.innerHTML = `
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="${modalId}Label">${producto.titulo}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <img src="${producto.imagen1}" class="img-fluid" alt="Imagen del producto">
+            <p>${producto.descripcion}</p>
+            <p><strong>Precio:</strong> $${producto.precio}</p>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button
+              type="button"
+              class="btn btn-sm btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>`;
+
+    contenedorModales.appendChild(divModal);
+  });
+
+  actualizarPaginacion();
+}
+
+// Función para actualizar la paginación
+function actualizarPaginacion() {
+  const paginacionContenedor = document.getElementById("paginacion");
+  paginacionContenedor.innerHTML = "";
+
+  const totalPaginas = Math.ceil(
+    productosFiltrados.length / productosPorPagina
+  );
+  if (totalPaginas <= 1) return;
+
+  for (let i = 1; i <= totalPaginas; i++) {
+    const btn = document.createElement("button");
+    btn.classList.add("btn", "btn-sm", "btn-danger", "mx-1");
+    btn.textContent = i;
+    if (i === paginaActual) btn.classList.add("btn-danger");
+    btn.addEventListener("click", () => {
+      paginaActual = i;
+      mostrarProductos();
+    });
+    paginacionContenedor.appendChild(btn);
+  }
+}
+
+// Función para filtrar productos
+function filtrarProductos() {
+  const textoBusqueda = document
+    .getElementById("barraBusqueda")
+    .value.trim()
+    .toLowerCase();
+  productosFiltrados = productos.filter((producto) =>
+    producto.titulo.toLowerCase().includes(textoBusqueda)
+  );
+  paginaActual = 1;
+  mostrarProductos();
+}
+
+// Evento de búsqueda
+const barraBusqueda = document.getElementById("barraBusqueda");
+barraBusqueda.addEventListener("input", filtrarProductos);
+
+// Inicializar carga de productos
+document.addEventListener("DOMContentLoaded", cargarProductos);
+
+// Función para cargar y mostrar productos con paginación
+async function cargarProductos() {
+  const productosRef = firebase.firestore().collection("productos");
+
+  try {
+    const snapshot = await productosRef.get();
+    productos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    productosFiltrados = [...productos]; // Inicialmente, los filtrados son todos
+    paginaActual = 1; // Asegurar que la primera página esté activa
+    mostrarProductos(); // Mostrar los productos inmediatamente
+  } catch (error) {
+    console.error("Error al cargar los productos: ", error);
+  }
+}
 
 // Manejar apertura y cierre de modales
 
