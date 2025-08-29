@@ -46,6 +46,25 @@
   transform: scale(1.2); /* Ajusta el factor de escala según prefieras */
 }
 
+.divContactoRepuesto .icon-hover iconify-icon {
+  font-size: 20px;
+}
+
+.cardConsultar {
+  transition: transform 0.3s ease;
+  border: 2px solid #25d366;
+  border-radius: 5px;
+}
+
+.cardConsultar:hover {
+  transform: scale(1.2);
+}
+
+.cardConsultar {
+  text-decoration: none;
+  color: #25d366;
+}
+
 .producto {
   transition: transform 0.3s ease; /* Transición suave para el cambio de tamaño */
 }
@@ -106,7 +125,7 @@
 }
 
 .textoNavbar {
-  font-size: 2vw;
+  font-size: 1.5vw;
 }
 
 .nav-link {
@@ -256,7 +275,7 @@ main {
   }
 
   .textoNavbar {
-    font-size: 1.5vw;
+    font-size: 1.3vw;
   }
 
   .botonHeader {

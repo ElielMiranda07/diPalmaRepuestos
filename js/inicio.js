@@ -63,12 +63,21 @@ async function cargarProductos() {
                   />
                   <div class="card-body">
                       <h5 class="card-title text-center">${producto.titulo}</h5>
-                      <p class="card-text text-center">
-                          ${producto.descripcion}
-                      </p>
-                      <p class="card-text text-center">
-                          <strong>Precio:</strong> $${producto.precio}
-                      </p>
+                      <div class="col d-flex justify-content-center mb-2 divContactoRepuesto">
+                        <a
+                          href="https://wa.me/5492346465005?text=Hola,%20quer%C3%ADa%20consultar%20por%20el%20repuesto%20${producto.titulo}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="d-flex flex-row align-items-center justify-content-between cardConsultar"
+                        >
+                          <span class="icon-hover d-flex align-items-center">
+                            <iconify-icon icon="logos:whatsapp-icon"></iconify-icon>
+                          </span>
+                          <p class="mb-0 me-1">
+                            Consultar
+                          </p>
+                        </a>
+                      </div>
                   <div class="d-flex justify-content-center">
                   <button
                     type="button"
@@ -112,7 +121,21 @@ async function cargarProductos() {
                       alt="Imagen del producto"
                     />
                     <p>${producto.descripcion}</p>
-                    <p><strong>Precio:</strong> $${producto.precio}</p>
+                    <div class="col d-flex justify-content-center mb-2 divContactoRepuesto">
+                        <a
+                          href="https://wa.me/5492346465005?text=Hola,%20quer%C3%ADa%20consultar%20por%20el%20repuesto%20${producto.titulo}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="d-flex flex-row align-items-center justify-content-between cardConsultar"
+                        >
+                          <span class="icon-hover d-flex align-items-center">
+                            <iconify-icon icon="logos:whatsapp-icon"></iconify-icon>
+                          </span>
+                          <p class="mb-0 me-1">
+                            Consultar
+                          </p>
+                        </a>
+                      </div>
                   </div>
                   <div class="modal-footer d-flex justify-content-center">
                     <button

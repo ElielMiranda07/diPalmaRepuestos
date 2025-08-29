@@ -67,7 +67,6 @@ formProducto.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const titulo = document.getElementById("tituloACargarProducto").value;
-  const precio = document.getElementById("precioACargarProducto").value;
   const descripcion = document.getElementById("descripcionProducto").value;
   const imagen = document.getElementById("imagenProducto").files[0];
 
@@ -86,7 +85,6 @@ formProducto.addEventListener("submit", async (e) => {
 
     await productosRef.add({
       titulo,
-      precio,
       descripcion,
       imagen1: imagenURL,
     });
@@ -110,7 +108,6 @@ document
 
     const docId = document.getElementById("docIdProducto").value;
     const titulo = document.getElementById("tituloModificar").value;
-    const precio = document.getElementById("precioModificar").value;
     const descripcion = document.getElementById("descripcionModificar").value;
     const nuevaImagen = document.getElementById("imagenModificar1").files[0];
     const eliminarImagen = document.getElementById("eliminarImagen1").checked;
@@ -149,7 +146,6 @@ document
 
       await productosRef.update({
         titulo,
-        precio,
         descripcion,
         imagen1: imagen1URL,
       });
@@ -199,7 +195,6 @@ async function modificarProducto(docId) {
 
     document.getElementById("docIdProducto").value = docId;
     document.getElementById("tituloModificar").value = data.titulo;
-    document.getElementById("precioModificar").value = data.precio;
     document.getElementById("descripcionModificar").value = data.descripcion;
 
     const preview = document.getElementById("previewModificar1");
@@ -256,8 +251,6 @@ async function cargarProductos() {
           <div class="d-flex flex-column align-items-center">
             <img src="${producto.imagen1}" alt="${producto.titulo}" class="mt-2 imagenProducto">
             <h4 class="mt-2">${producto.titulo}</h4>
-            <p class="mt-1 text-center">${producto.descripcion}</p>
-            <h5 class="mt-1">$${producto.precio}</h5>
             <div class="my-1 d-flex flex-column justify-content-center">
               <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#${modalId}">Ver más</button>
               <button type="button" class="btn btn-sm btn-success mt-2" onclick="modificarProducto('${docId}')">Modificar</button>
@@ -278,6 +271,9 @@ async function cargarProductos() {
               <div class="modal-body text-center">
                 <img src="${producto.imagen1}" class="img-fluid mb-2"><br>
               </div>
+              <p>
+                ${producto.descripcion}
+              </p>
             </div>
           </div>
         </div>`;
