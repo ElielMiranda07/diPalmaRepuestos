@@ -157,20 +157,22 @@ main {
 }
 
 .textoMain {
-  color: #eb0a1e;
+  color: #000000;
   font-size: 7vw;
   max-width: 60vw;
   font-family: "Atkinson Hyperlegible", sans-serif;
   font-weight: 700;
   font-style: normal;
+  filter: drop-shadow(0 0 10px rgb(221, 8, 43, 0.35));
 }
 
 .textoMainBis {
-  color: #eb0a1e;
+  color: #000000;
   font-size: 3vw;
   font-family: "Atkinson Hyperlegible", sans-serif;
   font-weight: 700;
   font-style: normal;
+  filter: drop-shadow(0 0 10px rgba(221, 8, 43, 0.35));
 }
 
 .imagenRepuestos {
@@ -182,6 +184,22 @@ main {
 
 .imagenRepuestos:hover {
   transform: scale(1.05);
+}
+
+.sectionMeta {
+  display: block;
+  height: 25vh;
+  overflow: hidden;
+  background-color: rgba(226, 13, 13, 0.87); /* Fondo rojo */
+}
+
+.divMeta {
+  height: 15vh;
+  background-color: rgba(226, 13, 13, 0.87); /* Fondo rojo */
+  background-image: url("../media/output-onlinepngtools (1).png");
+  background-repeat: repeat; /* Se repite la imagen */
+  background-size: 8% auto; /* Tamaño de cada logo */
+  background-position: center; /* Centrado del patrón */
 }
 
 .section2 {
@@ -263,6 +281,11 @@ main {
   font-weight: 700;
   font-style: normal;
   font-size: 1.3vh;
+}
+
+.imagenFrenteLocal {
+  width: 60%;
+  height: auto;
 }
 
 @media (min-width: 992px) {

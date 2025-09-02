@@ -34,6 +34,7 @@ let productos = [];
 let productosFiltrados = [];
 let productosPorPagina = 4;
 let paginaActual = 1;
+let filtroCategoria = "todas";
 
 // Función para cargar y mostrar productos con paginación, ordenados por 'clicks'
 async function cargarProductos() {
@@ -167,21 +168,42 @@ function actualizarPaginacion() {
 }
 
 // Función para filtrar productos
-function filtrarProductos() {
+function filtrarProductos(categoria = filtroCategoria) {
+  filtroCategoria = categoria; // Guardamos la categoría activa
   const textoBusqueda = document
     .getElementById("barraBusqueda")
     .value.trim()
     .toLowerCase();
-  productosFiltrados = productos.filter((producto) =>
-    producto.titulo.toLowerCase().includes(textoBusqueda)
-  );
+
+  productosFiltrados = productos.filter((producto) => {
+    const coincideBusqueda = producto.titulo
+      .toLowerCase()
+      .includes(textoBusqueda);
+
+    const coincideCategoria =
+      filtroCategoria === "todas" ||
+      (producto.categoria && producto.categoria === filtroCategoria);
+
+    return coincideBusqueda && coincideCategoria;
+  });
+
   paginaActual = 1;
   mostrarProductos();
 }
 
 // Evento de búsqueda
 const barraBusqueda = document.getElementById("barraBusqueda");
-barraBusqueda.addEventListener("input", filtrarProductos);
+barraBusqueda.addEventListener("input", () => filtrarProductos());
+
+function activarBoton(boton) {
+  // Quitar filtroActivo de todos los botones de categoría
+  document
+    .querySelectorAll(".filtroCategoria")
+    .forEach((b) => b.classList.remove("filtroActivo"));
+
+  // Agregarlo solo al botón clickeado
+  boton.classList.add("filtroActivo");
+}
 
 // Inicializar carga de productos
 document.addEventListener("DOMContentLoaded", cargarProductos);

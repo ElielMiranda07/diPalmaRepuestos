@@ -69,6 +69,9 @@ formProducto.addEventListener("submit", async (e) => {
   const titulo = document.getElementById("tituloACargarProducto").value;
   const descripcion = document.getElementById("descripcionProducto").value;
   const imagen = document.getElementById("imagenProducto").files[0];
+  const categoria = document.querySelector(
+    'input[name="btnCategoria"]:checked'
+  ).value;
 
   if (!imagen) {
     alert("Debes seleccionar una imagen para el producto.");
@@ -87,6 +90,7 @@ formProducto.addEventListener("submit", async (e) => {
       titulo,
       descripcion,
       imagen1: imagenURL,
+      categoria,
     });
 
     mensajeDeProducto.innerHTML = "Producto guardado exitosamente.";
@@ -111,6 +115,9 @@ document
     const descripcion = document.getElementById("descripcionModificar").value;
     const nuevaImagen = document.getElementById("imagenModificar1").files[0];
     const eliminarImagen = document.getElementById("eliminarImagen1").checked;
+    const categoria = document.querySelector(
+      'input[name="btnCategoriaModificar"]:checked'
+    ).value;
 
     const productosRef = firebase
       .firestore()
@@ -148,6 +155,7 @@ document
         titulo,
         descripcion,
         imagen1: imagen1URL,
+        categoria,
       });
 
       alert("Producto modificado exitosamente.");
@@ -156,6 +164,47 @@ document
       alert("Error al modificar producto: " + error.message);
     }
   });
+
+// Función para modificar un producto por ID (nombre del documento)
+async function modificarProducto(docId) {
+  const docRef = firebase.firestore().collection("productos").doc(docId);
+  const docSnap = await docRef.get();
+
+  if (docSnap.exists) {
+    const data = docSnap.data();
+
+    document.getElementById("docIdProducto").value = docId;
+    document.getElementById("tituloModificar").value = data.titulo;
+    document.getElementById("descripcionModificar").value = data.descripcion;
+
+    const preview = document.getElementById("previewModificar1");
+    if (data.imagen1) {
+      preview.src = data.imagen1;
+      preview.style.display = "inline-block";
+    } else {
+      preview.src = "";
+      preview.style.display = "none";
+    }
+
+    document.getElementById("imagenModificar1").value = "";
+    document.getElementById("eliminarImagen1").checked = false;
+
+    // Preseleccionar la categoría
+    if (data.categoria) {
+      const radio = document.querySelector(
+        `input[name="btnCategoriaModificar"][value="${data.categoria}"]`
+      );
+      if (radio) {
+        radio.checked = true;
+      }
+    }
+
+    const modal = new bootstrap.Modal(
+      document.getElementById("modalModificarProducto")
+    );
+    modal.show();
+  }
+}
 
 // Función para eliminar un producto por ID (nombre del documento)
 async function eliminarProducto(idDocumento) {
@@ -182,37 +231,6 @@ async function eliminarProducto(idDocumento) {
     } catch (error) {
       alert("Error al eliminar el producto: " + error.message);
     }
-  }
-}
-
-// Función para modificar un producto por ID (nombre del documento)
-async function modificarProducto(docId) {
-  const docRef = firebase.firestore().collection("productos").doc(docId);
-  const docSnap = await docRef.get();
-
-  if (docSnap.exists) {
-    const data = docSnap.data();
-
-    document.getElementById("docIdProducto").value = docId;
-    document.getElementById("tituloModificar").value = data.titulo;
-    document.getElementById("descripcionModificar").value = data.descripcion;
-
-    const preview = document.getElementById("previewModificar1");
-    if (data.imagen1) {
-      preview.src = data.imagen1;
-      preview.style.display = "inline-block";
-    } else {
-      preview.src = "";
-      preview.style.display = "none";
-    }
-
-    document.getElementById("imagenModificar1").value = "";
-    document.getElementById("eliminarImagen1").checked = false;
-
-    const modal = new bootstrap.Modal(
-      document.getElementById("modalModificarProducto")
-    );
-    modal.show();
   }
 }
 

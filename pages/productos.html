@@ -129,7 +129,7 @@
                 <strong>Olavarría 372 - (6620) Chivilcoy (B)</strong>
               </p>
               <p class="p-0 m-0 text-center textoNavbar">
-                <strong>2346-307267</strong>
+                <strong>2346-307267/465005</strong>
               </p>
               <p class="p-0 m-0 text-center textoNavbar">
                 <strong>jldipalmarepuestos@yahoo.com.ar</strong>
@@ -155,14 +155,17 @@
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                   <a
-                    class="nav-link fs-2"
+                    class="nav-link fs-4"
                     aria-current="page"
                     href="../index.html"
                     >Inicio</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link fs-2 active" href="">Repuestos</a>
+                  <a class="nav-link fs-4 active" href="">Repuestos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fs-4" href="./nosotros.html">Nosotros</a>
                 </li>
               </ul>
             </div>
@@ -172,9 +175,9 @@
       <div class="border-container my-1"></div>
     </header>
     <main class="d-flex flex-column align-items-center">
-      <article class="col-6">
+      <article class="col">
         <!-- Barra de búsqueda -->
-        <div class="input-group my-3">
+        <div class="col-12 col-md-6 input-group my-3">
           <input
             type="text"
             id="barraBusqueda"
@@ -183,6 +186,64 @@
             aria-label="Buscar productos"
             aria-describedby="button-addon2"
           />
+        </div>
+        <div
+          class="container-fluid d-flex flex-wrap justify-content-evenly justify-content-center-sm mt-3 mb-3 p-0"
+        >
+          <button
+            class="btn btn-sm btn-danger m-1 filtroCategoria filtroActivo"
+            onclick="filtrarProductos('todas'); activarBoton(this)"
+          >
+            Todas
+          </button>
+          <button
+            class="btn btn-sm btn-danger filtroCategoria m-1"
+            onclick="filtrarProductos('categoriaCarroceria'); activarBoton(this)"
+          >
+            Carroceria/Iluminación
+          </button>
+          <button
+            class="btn btn-sm btn-danger filtroCategoria m-1"
+            onclick="filtrarProductos('categoriaSuspension'); activarBoton(this)"
+          >
+            Suspensión
+          </button>
+          <button
+            class="btn btn-sm btn-danger filtroCategoria m-1"
+            onclick="filtrarProductos('categoriaFiltros'); activarBoton(this)"
+          >
+            Filtros
+          </button>
+          <button
+            class="btn btn-sm btn-danger filtroCategoria m-1"
+            onclick="filtrarProductos('categoriaFrenos'); activarBoton(this)"
+          >
+            Frenos
+          </button>
+          <button
+            class="btn btn-sm btn-danger filtroCategoria m-1"
+            onclick="filtrarProductos('categoriaMecanica'); activarBoton(this)"
+          >
+            Mecánica
+          </button>
+          <button
+            class="btn btn-sm btn-danger filtroCategoria m-1"
+            onclick="filtrarProductos('categoriaTransmision'); activarBoton(this)"
+          >
+            Transmisión
+          </button>
+          <button
+            class="btn btn-sm btn-danger filtroCategoria m-1"
+            onclick="filtrarProductos('categoriaRefrigeracion'); activarBoton(this)"
+          >
+            Refrigeración
+          </button>
+          <button
+            class="btn btn-sm btn-danger filtroCategoria m-1"
+            onclick="filtrarProductos('categoriaKits'); activarBoton(this)"
+          >
+            Kit's
+          </button>
         </div>
       </article>
       <article
