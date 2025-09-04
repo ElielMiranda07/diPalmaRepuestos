@@ -32,9 +32,16 @@ const db = firebase.firestore();
 // Variables globales para paginación
 let productos = [];
 let productosFiltrados = [];
-let productosPorPagina = 4;
 let paginaActual = 1;
 let filtroCategoria = "todas";
+
+let productosPorPagina;
+
+if (window.innerWidth < 768) {
+  productosPorPagina = 8;
+} else {
+  productosPorPagina = 12;
+}
 
 // Función para cargar y mostrar productos con paginación, ordenados por 'clicks'
 async function cargarProductos() {
@@ -81,7 +88,7 @@ function mostrarProductos() {
     );
     divProducto.setAttribute("data-nombre", producto.titulo.toLowerCase());
     divProducto.innerHTML = `
-      <div class="card">
+      <div class="card d-flex flex-column align-items-center justify-content-center">
         <img src="${producto.imagen1}" class="card-img-top" alt="${producto.titulo}" />
         <div class="card-body">
           <h5 class="card-title text-center">${producto.titulo}</h5>
@@ -158,15 +165,33 @@ function actualizarPaginacion() {
     const btn = document.createElement("button");
     btn.classList.add("btn", "btn-sm", "btn-danger", "mx-1");
     btn.textContent = i;
-    if (i === paginaActual) btn.classList.add("btn-danger");
+
+    // Si es la página actual → activo
+    if (i === paginaActual) {
+      btn.classList.add("filtroActivo");
+    }
+
+    btn.addEventListener("click", () => {
+      paginaActual = i;
+      mostrarProductos(); // vuelve a renderizar y aplica el filtroActivo al botón correcto
+    });
+
+    paginacionContenedor.appendChild(btn);
+
     btn.addEventListener("click", () => {
       paginaActual = i;
       mostrarProductos();
+      window.scrollTo({ top: 0, behavior: "smooth" }); // scroll suave hasta arriba
     });
-    paginacionContenedor.appendChild(btn);
   }
 }
-
+/*
+btn.addEventListener("click", () => {
+  paginaActual = i;
+  mostrarProductos();
+  window.scrollTo({ top: 0, behavior: "smooth" }); // scroll suave hasta arriba
+});
+*/
 // Función para filtrar productos
 function filtrarProductos(categoria = filtroCategoria) {
   filtroCategoria = categoria; // Guardamos la categoría activa
